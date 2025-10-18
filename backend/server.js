@@ -1,12 +1,12 @@
-import express from "express";
+import express from 'express';
 
 const app = express();
 
+app.get('/', (req, res) => {
+    res.send('Hello, Budget App!');
+})
 
-app.get("/", (req, res) => {
-    res.send("Hello I am the backend");
-});
 
-app.listen(5001, () => {
-    console.log("Server is running on port 3000");
-});
+app.listen(3001, () => {
+    console.log('Server is running on port 3001');
+})

@@ -7,6 +7,12 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
+async function initDB() {
+    try {
+        await sql
+} catch (error) {
+}
+
 app.get('/', (req, res) => {
     res.send ('Budget App is Working!!');
 });

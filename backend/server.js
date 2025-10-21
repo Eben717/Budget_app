@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { sql } from './db.js';
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ async function initDB() {
     try {
         await sql
 } catch (error) {
+    }
 }
 
 app.get('/', (req, res) => {

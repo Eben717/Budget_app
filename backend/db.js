@@ -1,4 +1,4 @@
-import {neon} from "@neondatabase/serverless-client";
+import {neon} from "@neondatabase/serverless";
 
 import "dotenv/config";
 

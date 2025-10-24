@@ -35,6 +35,13 @@ async function initDB() {
     }
 }
 
+initDB().then(() => {
+  app.listen(PORT, () => {
+    console.log('Server is running on PORT:', PORT);
+  });
+});
+
+
 app.post('/api/transactions', async  (req, res) => {
     try {
         const {title, amount, category, user_id} = req.body;
@@ -57,7 +64,3 @@ app.post('/api/transactions', async  (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log('Server is running on PORT:', PORT);
-}
-);

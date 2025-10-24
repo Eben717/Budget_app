@@ -37,9 +37,23 @@ async function initDB() {
 
 app.post('/api/transactions', async  (req, res) => {
     try {
-        const {title,amount,category,user_id} = req.body;
+        const {title, amount, category, user_id} = req.body;
+
+        if(!title || !category || !user_id || amount === undefined) {
+        return res.status(400).json({message: 'All fields are required'});
+        }
+
+        const transaction =     
+        await sql`INSERT INTO transactions (title, amount, category, user_id)
+        VALUES (${title}, ${amount}, ${category}, ${user_id})
+        RETURNING *`;
+        console.log(transaction);
+        res.status(201).json(transaction[0]);
+
+
     } catch (error) {
-        
+        console.log('Error creating transaction:', error);
+        res.status(500).json({message: 'Internal Server Error'});
     }
 });
 

@@ -29,7 +29,7 @@ async function initDB() {
         created_at TIMESTAMP DEFAULT CURRENT_DATE
         )`;
 
-        console.log('Database Initialized Successfullys');
+        console.log('Database Initialized Successfully');
 } catch (error) {
     console.log('Error Initializing Database:', error);
     }
@@ -41,6 +41,17 @@ initDB().then(() => {
   });
 });
 
+
+app.get('/api/transactions/:userId', async (req, res) => {
+    try {
+        const {userId} = req.params;
+        const transactions = await sql`SELECT * FROM transactions WHERE user_id = ${userId} ORDER BY created_at DESC`;
+        res.status(200).json(transactions);
+         } catch (error) {
+        console.log('Error getting the transaction:', error);
+        res.status(500).json({message: 'Internal Server Error'});
+    }
+})
 
 app.post('/api/transactions', async  (req, res) => {
     try {

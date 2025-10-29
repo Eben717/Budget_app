@@ -95,3 +95,12 @@ app.delete('/api/transactions/:id', async (req, res) => {
     }
 });
 
+app.get('/api/transactions/summary/:userId', async (req, res) => {
+    try {
+        const {userId} = req.params;
+
+         } catch (error) {
+        console.log('Error getting the summary:', error);
+        res.status(500).json({message: 'Internal Server Error'});
+    }
+})

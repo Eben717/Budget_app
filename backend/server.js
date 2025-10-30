@@ -107,6 +107,16 @@ app.get('/api/transactions/summary/:userId', async (req, res) => {
         SELECT COALESCE(SUM(amount), 0) AS income FROM transactions
         WHERE user_id = ${userId} AND amount > 0`
 
+        const expenseResult = await sql`
+        SELECT COALESCE(SUM(amount), 0) AS expense FROM transactions
+        WHERE user_id = ${userId} AND amount < 0`
+
+        res.status(200).json({
+            balance: balanceResult[0].balance,
+            income: incomeResult[0].income,
+            expense: expenseResult[0].expense
+        })
+
          } catch (error) {
         console.log('Error getting the summary:', error);
         res.status(500).json({message: 'Internal Server Error'});

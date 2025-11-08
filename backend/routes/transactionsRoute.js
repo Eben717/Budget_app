@@ -3,7 +3,7 @@ import { sql } from '../config/db.js';
 
 const router = express.Router();
 
-router.get('/api/transactions/:userId', async (req, res) => {
+router.get('/:userId', async (req, res) => {
     try {
         const {userId} = req.params;
         const transactions = await sql`SELECT * FROM transactions WHERE user_id = ${userId} ORDER BY created_at DESC`;
@@ -14,7 +14,7 @@ router.get('/api/transactions/:userId', async (req, res) => {
     }
 });
 
-router.post('/api/transactions', async  (req, res) => {
+router.post('/', async  (req, res) => {
     try {
         const {title, amount, category, user_id} = req.body;
 
@@ -36,7 +36,7 @@ router.post('/api/transactions', async  (req, res) => {
     }
 });
 
-app.delete('/api/transactions/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const {id} = req.params;
 
@@ -56,7 +56,7 @@ app.delete('/api/transactions/:id', async (req, res) => {
     }
 });
 
-app.get('/api/transactions/summary/:userId', async (req, res) => {
+router.get('/summary/:userId', async (req, res) => {
     try {
         const {userId} = req.params;
 
@@ -83,3 +83,5 @@ app.get('/api/transactions/summary/:userId', async (req, res) => {
         res.status(500).json({message: 'Internal Server Error'});
     }
 });
+
+export default router;

@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useSignUp } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
+import { styles } from "../../assets/styles/auth.styles.js";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp()
@@ -36,7 +37,7 @@ export default function SignUpScreen() {
     }
   }
 
-  // Handle submission of verification form
+  // Handle submission of  verification form
   const onVerifyPress = async () => {
     if (!isLoaded) return
 
@@ -65,8 +66,8 @@ export default function SignUpScreen() {
 
   if (pendingVerification) {
     return (
-      <>
-        <Text>Verify your email</Text>
+      <View style={styles.verificationContainer}>
+        <Text style={styles.verificationTitle}>Verify your email</Text>
         <TextInput
           value={code}
           placeholder="Enter your verification code"
@@ -75,7 +76,7 @@ export default function SignUpScreen() {
         <TouchableOpacity onPress={onVerifyPress}>
           <Text>Verify</Text>
         </TouchableOpacity>
-      </>
+      </View>
     )
   }
 

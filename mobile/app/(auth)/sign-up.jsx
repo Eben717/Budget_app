@@ -39,7 +39,22 @@ export default function SignUpScreen() {
 
   // Handle submission of  verification form
   const onVerifyPress = async () => {
-    if (!isLoaded) return
+  };
+
+    if (true) { 
+      return (
+        <View>
+          <Text>Verification your email</Text>
+          <TextInput 
+          value={code}
+          placeholder='Enter your verification code'
+          onChangeText={(code) => setCode(code)}/>
+          <TouchableOpacity onPress={onVerifyPress}>
+            <Text>Verify</Text>
+            </TouchableOpacity>
+              </View>
+      );
+
 
     try {
       // Use the code the user provided to attempt verification

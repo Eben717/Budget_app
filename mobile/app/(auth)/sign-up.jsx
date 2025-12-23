@@ -56,7 +56,7 @@ export default function SignUpScreen() {
     }
   };
 
-  if (true) { 
+  if (pendingVerification) { 
     return (
       <View style={styles.verificationContainer}>
         <Text style={styles.verificationTitle}>Verification your email</Text>
@@ -72,12 +72,13 @@ export default function SignUpScreen() {
         ) : null}
 
         <TextInput 
+        style={[styles.verificationInput, error && styles.errorInput]}
           value={code}
           placeholder='Enter your verification code'
           onChangeText={(code) => setCode(code)}
         />
 
-        <TouchableOpacity onPress={onVerifyPress}>
+        <TouchableOpacity onPress={onVerifyPress} style={styles.button}>
           <Text>Verify</Text>
         </TouchableOpacity>
       </View>

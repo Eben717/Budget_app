@@ -102,8 +102,8 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View>
-      <>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={styles.signUpContainer}>
         <Text>Sign up</Text>
         <TextInput
           autoCapitalize="none"
@@ -126,7 +126,8 @@ export default function SignUpScreen() {
             <Text>Sign in</Text>
           </Link>
         </View>
-      </>
+      <View/>
+    </View>
     </View>
   )
 }

@@ -6,7 +6,7 @@ import { Link, useRouter } from 'expo-router'
 import { styles } from "../../assets/styles/auth.styles.js";
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../../constants/color.js';
-import { Image } from 'react-native';
+import { Image } from 'expo-image';
 
 
 export default function SignUpScreen() {
@@ -106,7 +106,7 @@ export default function SignUpScreen() {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <View style={styles.signUpContainer}>
-        <Image source={require('../../assets/images/revenue-i2.png')} />
+        <Image source={require('../../assets/images/revenue-i2.png')} style={styles.illustration} />
         
         <Text style={styles.title}>Create Account</Text>
         

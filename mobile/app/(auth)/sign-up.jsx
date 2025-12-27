@@ -5,7 +5,9 @@ import { useSignUp } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
 import { styles } from "../../assets/styles/auth.styles.js";
 import { Ionicons } from '@expo/vector-icons';
-import { COLORS } from '../../constants/color.js'; 
+import { COLORS } from '../../constants/color.js';
+import { Image } from 'react-native';
+
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp()
@@ -102,9 +104,22 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <View style={styles.signUpContainer}>
-        <Text>Sign up</Text>
+        <Image source={require('../../assets/images/revenue-i2.png')} />
+        
+        <Text style={styles.title}>Create Account</Text>
+        
+                {error ? (
+          <View style={styles.errorContainer}>
+            <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
+            <Text style={styles.errorText}>{error}</Text>
+            <TouchableOpacity onPress={() => setError("")}>
+              <Ionicons name="close" size={20} color={COLORS.expense} />
+            </TouchableOpacity>
+          </View>
+        ) : null}
+        
         <TextInput
           autoCapitalize="none"
           value={emailAddress}

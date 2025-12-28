@@ -7,6 +7,7 @@ import { styles } from "../../assets/styles/auth.styles.js";
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../../constants/color.js';
 import { Image } from 'expo-image';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
 export default function SignUpScreen() {
@@ -104,8 +105,14 @@ export default function SignUpScreen() {
   }
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <View style={styles.signUpContainer}>
+    <KeyboardAwareScrollView
+    style={{flex: 1}}
+    contentContainerStyle={{flexGrow: 1}}
+    enableOnAndroid={true}
+    enableAutomaticScroll={true}
+    >
+
+      <View style={styles.container}>
         <Image source={require('../../assets/images/revenue-i2.png')} style={styles.illustration} />
         
         <Text style={styles.title}>Create Account</Text>
@@ -150,6 +157,6 @@ export default function SignUpScreen() {
         </View>
       <View/>
     </View>
-    </View>
+    </KeyboardAwareScrollView>
   )
 }

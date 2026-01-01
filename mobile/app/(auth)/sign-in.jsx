@@ -1,7 +1,8 @@
 import { useSignIn } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
@@ -39,7 +40,14 @@ export default function Page() {
   }
 
   return (
-    <View>
+       <KeyboardAwareScrollView
+          style={{flex: 1}}
+          contentContainerStyle={{flexGrow: 1}}
+          enableOnAndroid={true}
+          enableAutomaticScroll={true}  
+          extraScrollHeight={200}
+          >
+      
       <Text>Sign in</Text>
       <TextInput
         autoCapitalize="none"
@@ -61,6 +69,6 @@ export default function Page() {
           <Text>Sign up</Text>
         </Link>
       </View>
-    </View>
+      </KeyboardAwareScrollView>
   )
 }

@@ -52,6 +52,17 @@ export default function Page() {
       <View style={styles.container}>
       <Image source={require('../../assets/images/revenue-i4.png')} style={styles.illustration} />
       <Text style={styles.title}>Welcome Back</Text>
+
+          {error ? (
+          <View style={styles.errorContainer}>
+            <Ionicons name="alert-circle" size={20} color={COLORS.expense} />
+            <Text style={styles.errorText}>{error}</Text>
+            <TouchableOpacity onPress={() => setError("")}>
+              <Ionicons name="close" size={20} color={COLORS.expense} />
+            </TouchableOpacity>
+          </View>
+        ) : null}
+        
       <TextInput
         autoCapitalize="none"
         value={emailAddress}

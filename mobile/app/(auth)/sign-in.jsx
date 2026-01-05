@@ -1,16 +1,21 @@
 import { useSignIn } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
-import { Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { useState } from 'react'
+import { Ionicons } from '@expo/vector-icons';
+import { COLORS } from '../../constants/color.js';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Image } from 'expo-image';
 import { styles } from '../../assets/styles/auth.styles';
 
 export default function Page() {
   const { signIn, setActive, isLoaded } = useSignIn()
   const router = useRouter()
 
-  const [emailAddress, setEmailAddress] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [emailAddress, setEmailAddress] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   // Handle the submission of the sign-in form
   const onSignInPress = async () => {
@@ -62,25 +67,31 @@ export default function Page() {
             </TouchableOpacity>
           </View>
         ) : null}
-        
+
       <TextInput
-        autoCapitalize="none"
-        value={emailAddress}
-        placeholder="Enter email"
-        onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
-      />
-      <TextInput
-        value={password}
-        placeholder="Enter password"
-        secureTextEntry={true}
-        onChangeText={(password) => setPassword(password)}
-      />
-      <TouchableOpacity onPress={onSignInPress}>
-        <Text>Continue</Text>
-      </TouchableOpacity>
-      <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
-        <Link href="/sign-up">
-          <Text>Sign up</Text>
+               style={[styles.input, error && styles.errorInput]}
+               autoCapitalize="none"
+               value={emailAddress}
+               placeholder="Enter email"
+               onChangeText={(email) => setEmailAddress(email)}
+             />
+        <TextInput
+          style={[styles.input, error && styles.errorInput]}
+          autoCapitalize="none"
+          value={password}
+          placeholder="Enter password"
+          secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+        />
+     
+             <TouchableOpacity style={styles.button} onPress={onSignInPress}>
+               <Text style={styles.buttonText}>Sign In</Text>
+             </TouchableOpacity>
+             <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
+               <Link href="/sign-up">
+               <TouchableOpacity onPress={() => router.back()}>
+                  <Text style={styles.linkText}>Sign up</Text>
+               </TouchableOpacity>
         </Link>
       </View>
       </View>

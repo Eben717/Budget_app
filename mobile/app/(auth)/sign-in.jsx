@@ -39,8 +39,13 @@ export default function Page() {
         console.error(JSON.stringify(signInAttempt, null, 2))
       }
     } catch (err) {
-      // See https://clerk.com/docs/custom-flows/error-handling
-      // for more info on error handling
+      if (err.errors ?.[0]?.code === 'form_password_incorrect') {
+        setError('Incorrect password. Please try again.');
+      } else {
+        setError('An error occurred. Please try again.')
+      }
+  
+        {
       console.error(JSON.stringify(err, null, 2))
     }
   }
@@ -83,19 +88,26 @@ export default function Page() {
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
         />
-     
+
              <TouchableOpacity style={styles.button} onPress={onSignInPress}>
                <Text style={styles.buttonText}>Sign In</Text>
              </TouchableOpacity>
              <View style={{ display: 'flex', flexDirection: 'row', gap: 3 }}>
-               <Link href="/sign-up">
+
+              <View style={styles.footerContainer}>
+               <Text style={styles.footerText}>Don't have an account?</Text>
+
+               <Link href="/sign-up" asChild
+               >
                <TouchableOpacity onPress={() => router.back()}>
                   <Text style={styles.linkText}>Sign up</Text>
                </TouchableOpacity>
         </Link>
+        </View>
       </View>
       </View>
       </KeyboardAwareScrollView>
       
   )
 }
+    }

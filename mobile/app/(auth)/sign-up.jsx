@@ -34,6 +34,14 @@ export default function SignUpScreen() {
       await signUp.prepareEmailAddressVerification({ strategy: 'email_code' })
       setPendingVerification(true)
     } catch (err) {
+      if (err.errors ?.[0]?.code === 'form_password_incorrect') {
+        setError('That email is already in use. Please try again.');
+      } else {
+        setError('An error occurred. Please try again.')
+      }
+    }
+  
+        {
       console.error(JSON.stringify(err, null, 2))
     }
   }

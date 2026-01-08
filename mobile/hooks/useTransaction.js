@@ -30,5 +30,19 @@ const fetchTransactions = useCallback(async () => {
         } catch (error) {
             console.error("Error fetching summary:", error);
         }
-    }, [userId])
-}
+    }, [userId]);
+
+    const loadData = useCallback(async () => {
+        If (!userId) return;
+
+        setIsLoading(true);
+        try{
+            // can be run in parallel
+        await Promise.all([fetchTransactions(), fetchSummary()]);
+        } catch (error) {  
+            console.error("Error loading data:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [userId, fetchTransactions, fetchSummary]);
+    }

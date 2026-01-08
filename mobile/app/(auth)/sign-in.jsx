@@ -1,7 +1,6 @@
 import { useSignIn } from '@clerk/clerk-expo'
 import { Link, useRouter } from 'expo-router'
 import { Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
 import { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../../constants/color.js';
@@ -44,11 +43,8 @@ export default function Page() {
       } else {
         setError('An error occurred. Please try again.')
       }
-  
-        {
-      console.error(JSON.stringify(err, null, 2))
     }
-  }
+  };
 
   return (
        <KeyboardAwareScrollView
@@ -110,4 +106,3 @@ export default function Page() {
       
   )
 }
-    }

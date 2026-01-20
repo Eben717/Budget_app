@@ -12,7 +12,7 @@ export const useTransaction = (userId) => {
 
 const [isloading, setIsLoading] = useState(true);
 
-//useCallback is used to for performance reasons, it memoizes the function so that it is not recreated on every render
+//useCallback is used to for performance reasons, it memorizes the function so that it is not recreated on every render
 const fetchTransactions = useCallback(async () => {
     try {
         const response = await fetch(`${API_URL}/transactions/${userId}`);

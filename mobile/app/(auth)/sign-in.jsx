@@ -74,6 +74,7 @@ export default function Page() {
                autoCapitalize="none"
                value={emailAddress}
                placeholder="Enter email"
+               placeholderTextColor="9A8478"
                onChangeText={(email) => setEmailAddress(email)}
              />
         <TextInput
